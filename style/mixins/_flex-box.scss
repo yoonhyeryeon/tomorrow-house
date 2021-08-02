@@ -1,0 +1,33 @@
+$flex-map {
+    strar:flex-start,
+    end:flex-end,
+    around:space-around,
+    between:space-between,
+    center:center,
+    stretch:stretch,
+}
+
+@function _get-felx-value($key) {
+    @return map-get($flex-map, $key); 
+}
+
+
+@mixin flexbox ($jc:center, $ai:center) {
+    display: flex;
+    align-items: _get-felx-value($ai);
+    justify-content: _get-felx-value($jc);
+}
+
+@mixin inline-flexbox ($jc:center, $ai:center) {
+    display: inline-flex;
+    align-items: _get-felx-value($ai);
+    justify-content: _get-felx-value($jc);
+}
+
+@mixin columns-flexbox ($jc:center, $ai:center) {
+    display: flex;
+    flex-direction: column;
+    align-items: _get-felx-value($ai);
+    justify-content: _get-felx-value($jc);
+}
+

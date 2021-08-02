@@ -28,68 +28,57 @@ $gutter: 20px;
 $sm-colums: 4;
 $sm-margin: 5px;
 
-$md-breakpoint: 768px;
-$md-colums : 12;
+$md-colums: 12;
 $md-margin: 30px;
 $md-max-container: 960px + $md-margin * 2;
 
-$lg-breakpoint: 1200px;
-$lg-columns : 12;
+$lg-columns: 12;
 $lg-unit: 75px;
-$lg-max-container: ($lg-unit+$gutter)*$lg-columns;
- 
+$lg-max-container: ($lg-unit + $gutter) * $lg-columns;
 
 .container {
-    width: 100%;
-    padding: 0 $sm-margin;
-    margin: 0 auto;
+  width: 100%;
+  padding: 0 $sm-margin;
+  margin: 0 auto;
 
-
-.row {
-    display: flex ;
+  .row {
+    display: flex;
     flex-wrap: wrap;
-}
+  }
 
-// 
-[class^="col-"] {
+  //
+  [class^="col-"] {
     padding: 0 10px;
-}
+  }
 
-@for $i from 1 through $sm-colums{
-   .col-sm-#{$i} {
-       width: percentage($i / $sm-colums);
-   }
-}
+  @for $i from 1 through $sm-colums {
+    .col-sm-#{$i} {
+      width: percentage($i / $sm-colums);
+    }
+  }
 
+  // 미디어쿼리 타블렛
 
-
-// 미디어쿼리 타블렛
-
-@media screen and (min-width:$md-breakpoint) {
+  @include responsive(T) {
     max-width: $md-max-container;
     padding: 0 $md-margin;
 
+    @for $i from 1 through $md-colums {
+      .col-md-#{$i} {
+        width: percentage($i / $md-colums);
+      }
+    }
+  }
 
-    @for $i from 1 through $md-colums{
-        .col-md-#{$i} {
-            width: percentage($i / $md-colums);
-        }
-     } 
-}
-
-// 미디어쿼리 데스크탑
-@media screen and (min-width:$lg-breakpoint) {
+  // 미디어쿼리 데스크탑
+  @include responsive(D) {
     max-width: $lg-max-container;
     padding: 0;
 
-
-    @for $i from 1 through $lg-columns{
-        .col-lg-#{$i} {
-            width: ($lg-unit + $gutter) * $i;
-   }
-  } 
- }
+    @for $i from 1 through $lg-columns {
+      .col-lg-#{$i} {
+        width: ($lg-unit + $gutter) * $i;
+      }
+    }
+  }
 }
-
-
- 
